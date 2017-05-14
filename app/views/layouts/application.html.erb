@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Djamshooter2</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <ul>
+      <% if user_signed_in? %>
+        <li>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        </li>
+      <% else %>
+        <li>
+        <%= link_to('Login', new_user_session_path)  %>
+        </li>
+        <li>
+        <%= link_to('sign_up', new_user_registration_path)  %>
+        </li>
+      <% end %>
+    </ul>
+    <ul>
+      <li>
+        <%= link_to "home", "/" %>
+        <%= link_to "merchants", merchants_path %>
+        <%= link_to "объявления", adverts_path %>
+        <%= link_to "profile", edit_user_registration_path(current_user) if current_user %>
+      </li>
+    </ul>
+
+    <p class="notice notice_time"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

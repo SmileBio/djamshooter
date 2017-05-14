@@ -1,0 +1,5 @@
+<%= form_for @page_service, url: "/services/#{params[:id]}" do |s| %>
+  <%= s.label :price %>
+  <%= s.text_field :price %>
+  <%=  s.submit "save" %>
+<% end %>

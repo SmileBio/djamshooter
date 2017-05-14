@@ -1,0 +1,15 @@
+// Place all the styles related to the admin/regions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.notice {
+  color: green;
+  animation: hideNotice 3s
+}
+@keyframes hideNotice {
+    0% {
+      color: black;
+    }
+    100% {
+      color: green;
+    }
+}

@@ -1,0 +1,16 @@
+<ul>
+  <li>
+    <%= @merchant_page.company_name %>
+  </li>
+</ul>
+<% @services.each do |service| %>
+  <ul>
+    <li>
+      <%= service.price %>
+    </li>
+    <li>
+      <%= service.service.title %>
+    </li>
+  </ul>
+<% end %>
+<%= link_to "merchants", merchants_path %>

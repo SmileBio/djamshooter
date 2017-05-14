@@ -1,0 +1,5 @@
+<%= form_for [:admin, @category] do |c| %>
+  <%= c.text_field :title %>
+  <%= c.collection_select :parent_id, @categories, :id, :title, include_blank: "рутовая"  %>
+  <%= c.submit "save" %>
+<% end %>

@@ -1,0 +1,6 @@
+<h2>create new region</h2>
+<%= form_for [:admin, @region] do |r| %>
+<%= r.text_field :title %>
+<%= r.submit "submit" %>
+<% end %>
+<%= link_to "back", :back %>

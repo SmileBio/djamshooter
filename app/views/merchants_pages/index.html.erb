@@ -1,0 +1,17 @@
+<% if @merchants_pages.nil? %>
+  <p>sorry nothing to show</p>
+<% else %>
+  <% @merchants_pages.each do |page| %>
+    <ul>
+      <li>
+        <%= page.id %>
+      </li>
+      <li>
+        <%= link_to page.company_name, merchant_path(page) %>
+      </li>
+      <li>
+        <%= page.description %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>

@@ -1,0 +1,23 @@
+
+<button type="button" class="new_page_root_categories"><%= category.title%></button>
+<% if category.sub_categories.size > 0 %>
+  <% category.sub_categories.each do |sub| %>
+    <div class="new_page_subcategory_title" style="display:none" id=<%= sub.id %> onclick="showChildCatigories(event)">
+      <ul>
+        <li><%= render partial: "sub_category", locals: {category: sub, level: 1}%></li>
+      </ul>
+    </div>
+  <% end %>
+<% else %>
+  <ul class="some_my_class" id=<%= "category_#{category.id}" %> style="display:none">
+    <div>
+      <% category.services.each do |service| %>
+        <div class="service_in_category" onclick="addServiceToMe(event)" >
+          <li class="add_me_to_services" id=<%= "service#{service.id}" %> >
+            <%= service.title %>
+          </li>
+        </div>
+      <% end %>
+    </div>
+  </ul>
+<% end %>

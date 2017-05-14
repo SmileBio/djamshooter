@@ -1,0 +1,12 @@
+<%= link_to "add advert", new_advert_path %>
+
+<% @adverts.each do |advert| %>
+  <ul>
+    <li>
+      <%= link_to advert.title, advert_path(advert) %>
+    </li>
+    <li>
+      <%= advert.user.email %>
+    </li>
+  </ul>
+<% end %>

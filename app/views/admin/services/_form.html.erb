@@ -1,0 +1,6 @@
+<%= form_for [:admin, @category, @service] do |s| %>
+  <%= s.text_field :title %>
+  <%= s.text_field :description %>
+  <%= s.text_field :measure %>
+  <%= s.submit "save" %>
+<% end %>

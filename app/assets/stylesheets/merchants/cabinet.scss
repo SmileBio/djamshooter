@@ -1,0 +1,152 @@
+// Place all the styles related to the merchants/cabinet controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.merchant_page_new {
+  padding: 5px 5px;
+  height: 100%;
+  width: 100%;
+}
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.diactivated {
+  display: none;
+}
+.active {
+  display: block;
+}
+
+.page_main_fields {
+  width: 25%;
+  float: left;
+  & input {
+    height: 20px;
+    width: 200px;
+  }
+  & div {
+    padding: 5px 5px;
+  }
+
+}
+.new_page_description textarea {
+  width: 200px;
+  height: 300px;
+}
+
+.new_page_services_added {
+  width: 30%;
+  height: 100%;
+  float: left;
+}
+
+.new_page_categories {
+  float: right;
+  width: 39%;
+  height: 540px;
+  overflow: scroll
+}
+
+.new_page_category_title {
+  & .new_page_root_categories {
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: orange;
+  }
+}
+
+.my_services_list{
+  & span {
+    float: left;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: green;
+    width: 200px;
+    text-align: center;
+    color: white;
+  }
+
+  & button {
+    float: right;
+  }
+  & input {
+    float: right;
+    margin-right: 10px;
+  }
+
+}
+
+
+.not_active_sub {
+  border-radius: 5px;
+  border: 2px solid black;
+  background-color: orange;
+}
+
+.active_sub {
+  border-radius: 5px;
+  border: 2px solid black;
+  background-color: red;
+}
+
+.new_page_save_button {
+  text-align: center;
+  & input {
+    border-radius: 7px;
+    background: red;
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    color: black;
+    border-color: black;
+  }
+}
+.new_page_service_price {
+  width: 60px;
+  border-radius: 5px;
+  border-color: black;
+  padding-left: 2px;
+}
+.new_page_service_button {
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 5px;
+  border-color: black;
+}
+
+.add_me_to_services {
+  border: 2px solid red;
+  border-radius: 5px;
+  background-color: orange;
+  margin: 2px 2px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.some_my_class {
+  margin: 10px 0;
+  padding: 0 0;
+  & li {
+    list-style: none;
+  }
+}
+
+.new_page_services_list{
+  border: 2px solid green;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 250px;
+  padding-left: 5px;
+  padding-bottom: 10px;
+  & p {
+    font-size: 20px;
+  }
+}
+
+

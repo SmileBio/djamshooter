@@ -1,0 +1,135 @@
+<div id="1" class="merchant_page_new clearfix">
+  <div class="clearfix">
+    <div class="page_main_fields">
+    <h2>main form</h2>
+      <%= form_for @merchant_page, url: "/cabinet" do |mp| %>
+        <div>
+          <span><%= mp.label :company_name, "название компании:" %></span>
+          <div class="new_page_company_name"><%= mp.text_field :company_name, autofocus: true, placeholder: "название" %></div>
+        </div>
+        <div>
+          <span><%= mp.label :description, "описание:" %></span>
+          <div class="new_page_description"><%= mp.text_area :description %></div>
+        </div>
+        <div>
+          <span><%= mp.label :phone, "номер телефона:" %></span>
+          <div class="new_page_phone"><%= mp.text_field :phone, placeholder: "+38(097)1111111"%></div>
+        </div>
+    </div>
+
+    <div id="new_page_services_added" class="new_page_services_added">
+        <h2>services</h2>
+        <div id="add_new_item_service">
+
+        </div>
+    </div>
+
+    <div class="new_page_categories">
+      <h2>categories and subs and service</h2>
+      <%= mp.fields_for :merchant_service do |service| %>
+        <% service.text_field :price %>
+        <% @categories.each do |category| %>
+          <div class="new_page_category_title active" id=<%= category.id %> >
+            <%= render partial: "sub_category", locals: {category: category} %>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="new_page_services_list">
+        <p>список сервисов: </p>
+        <div id="services_to_show">
+          выберите категорию для отображения доступных сервисов
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="new_page_save_button">
+    <%= mp.submit "save" %>
+  </div>
+<% end %>
+</div>
+
+<script>
+
+  $(document).ready(
+    $(".new_page_category_title").children("button").each(function(){
+      $(this).click(showChildren)
+    })
+  )
+
+  function addServiceToMe(event) {
+    $(event.target).hide()
+    var service_id = event.target.id+"_"
+    var service_div = `<div class='my_services_list clearfix' id='${service_id}'>
+      <span>${event.target.innerText}</span>
+      <button class='new_page_service_button clearfix' onclick='removeFromMyServices(event)' value=${service_id}>-</button>
+      <input type='text' name='merchant_page[merchant_service][price]' id='merchant_page_merchant_service_price' class='new_page_service_price' type='text' placeholder='цена'>
+
+    </div`
+    $("#add_new_item_service").append(service_div)
+  }
+
+  function removeFromMyServices(event){
+    id = event.target.value.split("_")[0]
+    $(`#${id}`).show()
+    $(`#${event.target.value}`).remove()
+  }
+
+  function showChildren(event){
+    var current = event.target.parentNode
+    var children = event.target.parentNode.children
+    var all = $(".new_page_category_title")
+
+    for (var i=0; i<all.length; i++) {
+      if (all[i]==current) {
+        var current_children = all[i].children
+        for (var z=0; z<current_children.length; z++){
+          $(current_children[z]).show()
+        }
+      }else {
+        var other_children = all[i].children
+        for (var x=0; x<other_children.length; x++){
+          $(other_children[x]).each(function(){
+            if (this.id) {
+              $(this).hide()
+            }
+          })
+        }
+      }
+    }
+
+    $("#services_to_show").hide()
+    //console.log(current)
+  }
+
+  function showChildCatigories(event){
+    $(".new_page_subcategory_title button").attr("class", "not_active_sub")
+    $(event.target).attr("class","active_sub")
+    $("#services_to_show").show()
+    var children = event.target.parentNode.children;
+    for (var i=0; i<children.length; i++){
+
+      var diactivated = children[i].className.indexOf("diactivated") > 0
+      if (children[i].id) {
+        children[i].className = children[i].className.split("diactivated").join(" ")
+      }
+      if (children[i].className=="some_my_class"){
+
+        var services = $("#services_to_show").children().prevObject[0].firstChild
+        var previous = $("#services_to_show").children().prevObject[0].firstChild.id
+        if (previous) {
+          var service_id = previous.split("_")[1]
+
+          $(services).hide()
+
+          $(`#${service_id} ul li`).append(services)
+        }
+
+        $("#services_to_show").html($(children[i]).show())
+      }
+
+    }
+  }
+
+</script>
+
