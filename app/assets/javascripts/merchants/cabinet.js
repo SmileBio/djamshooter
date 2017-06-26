@@ -1,9 +1,6 @@
-/*$(document).ready({
-  //console.log("steel");
-  var x = $("#new_page_services_added");
+/*$(document).ready(
+  var x = $("h2");
   console.log(x);
-})*/
-var newPage = $("#some").click(function(){
-  alert("here");
-})
+)
+*/
 

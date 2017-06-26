@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_one :merchant_page
   belongs_to :city
   has_many :adverts
+  has_and_belongs_to_many :cities
+
 
   def roles
     user_roles.split(" ") || []

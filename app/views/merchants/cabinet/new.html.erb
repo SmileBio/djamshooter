@@ -1,39 +1,38 @@
 <div id="1" class="merchant_page_new clearfix">
   <div class="clearfix">
-    <div class="page_main_fields">
-    <h2>main form</h2>
+
+
       <%= form_for @merchant_page, url: "/cabinet" do |mp| %>
-        <div>
-          <span><%= mp.label :company_name, "название компании:" %></span>
-          <div class="new_page_company_name"><%= mp.text_field :company_name, autofocus: true, placeholder: "название" %></div>
+        <div class="page_main_fields">
+          <h2>main form</h2>
+          <div>
+            <span><%= mp.label :company_name, "название компании:" %></span>
+            <div class="new_page_company_name"><%= mp.text_field :company_name, autofocus: true, placeholder: "название" %></div>
+          </div>
+          <div>
+            <span><%= mp.label :description, "описание:" %></span>
+            <div class="new_page_description"><%= mp.text_area :description %></div>
+          </div>
+          <div>
+            <span><%= mp.label :phone, "номер телефона:" %></span>
+            <div class="new_page_phone"><%= mp.text_field :phone, placeholder: "+38(097)1111111"%></div>
+          </div>
         </div>
-        <div>
-          <span><%= mp.label :description, "описание:" %></span>
-          <div class="new_page_description"><%= mp.text_area :description %></div>
-        </div>
-        <div>
-          <span><%= mp.label :phone, "номер телефона:" %></span>
-          <div class="new_page_phone"><%= mp.text_field :phone, placeholder: "+38(097)1111111"%></div>
-        </div>
-    </div>
 
-    <div id="new_page_services_added" class="new_page_services_added">
-        <h2>services</h2>
-        <div id="add_new_item_service">
+        <div id="new_page_services_added" class="new_page_services_added">
+            <h2>services</h2>
+            <div id="add_new_item_service">
 
+            </div>
         </div>
-    </div>
 
     <div class="new_page_categories">
       <h2>categories and subs and service</h2>
-      <%= mp.fields_for :merchant_service do |service| %>
-        <% service.text_field :price %>
-        <% @categories.each do |category| %>
+      <% @categories.each do |category| %>
           <div class="new_page_category_title active" id=<%= category.id %> >
             <%= render partial: "sub_category", locals: {category: category} %>
           </div>
         <% end %>
-      <% end %>
       <div class="new_page_services_list">
         <p>список сервисов: </p>
         <div id="services_to_show">
@@ -60,11 +59,12 @@
   function addServiceToMe(event) {
     $(event.target).hide()
     var service_id = event.target.id+"_"
+    var id_for_save = event.target.id.split("service")[1]
     var service_div = `<div class='my_services_list clearfix' id='${service_id}'>
       <span>${event.target.innerText}</span>
       <button class='new_page_service_button clearfix' onclick='removeFromMyServices(event)' value=${service_id}>-</button>
-      <input type='text' name='merchant_page[merchant_service][price]' id='merchant_page_merchant_service_price' class='new_page_service_price' type='text' placeholder='цена'>
-
+      <input type='hidden' name='merchant_page[merchant_services_attributes][][service_id]' id='merchant_page_merchant_service_price' class='new_page_service_price' value=${id_for_save}>
+      <input type='text' name='merchant_page[merchant_services_attributes][][price]' id='merchant_page_merchant_service_price' class='new_page_service_price' type='text' placeholder='цена'>
     </div`
     $("#add_new_item_service").append(service_div)
   }

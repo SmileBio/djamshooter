@@ -23,6 +23,7 @@ class AdvertsController < ApplicationController
     if @advert.save
       redirect_to advert_path(@advert)
     else
+      p @advert.errors.messages
       render "new"
     end
   end
@@ -46,7 +47,7 @@ class AdvertsController < ApplicationController
 
   private
     def advert_params
-      params.require(:advert).permit(:title, :description, :user_id)
+      params.require(:advert).permit(:title, :description, :user_id, :price)
     end
 
     def load_advert

@@ -1,3 +1,43 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.welcome_footer {
+  text-align: center;
+  padding-bottom: 30px;
+  & h1, h2 {
+    font-size: 20px
+  }
+
+}
+.search_form .welcome_search_input {
+  color: blue;
+  height: 50px;
+  width: 300px;
+  border-radius: 5px;
+  font-size: 20px;
+  border-color: darkred;
+}
+.search_form {
+  text-align: center;
+}
+.welcome_search_submit {
+  height: 50px;
+  width: 90px;
+  background: linear-gradient(to top, #057F45, #535353);
+  border-radius: 5px;
+  font-size: 20px;
+  color: white;
+  border-color: darkred;
+  &:hover {
+    font-size: 22px;
+  }
+}
+
+.welcome_search_result {
+  text-align: center;
+  & ul {
+    padding: 0 0;
+    text-align: left;
+  }
+}

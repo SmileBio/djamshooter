@@ -1,3 +1,16 @@
-<%= @advert.title %>
-<%= @advert.description %>
-<%= link_to "edit", edit_advert_path(@advert) %>
+<div class="show_advert">
+  <div class="show_advert_title">
+    <%= @advert.title %>
+  </div>
+  <div class="show_advert_price">
+    Цена: <%= @advert.price %>
+  </div>
+  <div class="show_advert_description">
+    <%= @advert.description %>
+  </div>
+  <div class="edit_advert_link">
+    <%= link_to "edit", edit_advert_path(@advert) if current_user.id == @advert.user_id %>
+  </div>
+</div>
+
+

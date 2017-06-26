@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514090319) do
+ActiveRecord::Schema.define(version: 20170531152136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20170514090319) do
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "price",       default: "Договорная"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -36,6 +37,13 @@ ActiveRecord::Schema.define(version: 20170514090319) do
     t.datetime "updated_at",            null: false
     t.integer  "region_id"
     t.index ["region_id"], name: "index_cities_on_region_id", using: :btree
+  end
+
+  create_table "cities_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "city_id", null: false
+    t.index ["city_id"], name: "index_cities_users_on_city_id", using: :btree
+    t.index ["user_id"], name: "index_cities_users_on_user_id", using: :btree
   end
 
   create_table "merchant_pages", force: :cascade do |t|

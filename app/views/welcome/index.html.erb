@@ -1,3 +1,37 @@
+<div class="welcome_footer">
+  <h1>джамшутер</h1>
+  <h2>лучший ресурс для поиска компаний специализирующихся на ремонтах</h2>
+</div>
+
 <% @regions.each do |region| %>
-  <p><%= region.title %></p>
+  <p><% region.title %></p>
 <% end %>
+<div class="search_form">
+  <%= form_tag "/", method: "get" do %>
+    <%= text_field_tag :search, "", class: "welcome_search_input", autofocus:true, placeholder: :uck_me %>
+    <%= submit_tag "искать", class:"welcome_search_submit" %>
+  <% end %>
+</div>
+
+
+<%if @merchants %>
+  <div class="welcome_search_result">
+    <div style="display:inline-block">
+      <ul >
+        <% @merchants.each do |merchant| %>
+          <li>
+            <%= link_to merchant.company_name, merchant_path(merchant) %>
+          </li>
+          <ul>
+            <% merchant.merchant_services.each do |service| %>
+            <li>
+              <%= service.service.title %> : <%= service.price %> $
+            </li>
+            <%end%>
+          </ul>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+<% end %>
+

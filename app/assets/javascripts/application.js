@@ -11,6 +11,22 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery_nested_form
+
+function openPanel(){
+  $("#user_panel").hide()
+  $(".user_panel").show()
+
+}
+function closePanel(){
+  setTimeout(hidePanel, 500)
+  function hidePanel(){
+    $(".user_panel").hide()
+    $("#user_panel").show()
+  }
+
+}

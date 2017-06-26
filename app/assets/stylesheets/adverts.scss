@@ -1,3 +1,114 @@
 // Place all the styles related to the adverts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.advert_form {
+  text-align: center;
+  padding-top: 20px;
+  & input {
+    margin: 15px 0;
+  }
+}
+
+.form_advert_title, .form_advert_description, .form_advert_price {
+  height: 40px;
+  width: 400px;
+  border-radius: 5px;
+  border: 2px solid #629FE6;
+  padding-left: 13px;
+}
+
+.form_advert_description {
+  height: 200px;
+}
+
+.form_advert_submit {
+  width: 100px;
+  height: 60px;
+  border: 2px solid darkred;
+  border-radius: 5px;
+  background: linear-gradient(to top, #057F45, #535353);
+  color: #2A1313;
+}
+
+.advert_index {
+  text-align: center;
+}
+.adverts_block {
+  display: inline-block;
+}
+
+.adverts_list {
+  padding: 15px 5px 0 5px;
+  & li {
+    list-style-type: none;
+  }
+}
+
+.advert_block_item {
+  margin-top: 5px;
+  border-bottom: 2px solid #968282;
+  border-radius: 3px;
+  height: 300px;
+  width: 500px;
+}
+
+.advert_item_description {
+  width: 485px;
+  border: 2px solid #99A4A0;
+  margin-top: 5px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #8694F8, #FFFFFF);
+  height: 150px;
+  padding-left: 5px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.advert_item_price {
+  width: 100px;
+  height: 40px;
+  border: 2px solid #968282;
+  margin-top: 5px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #8694F8, #FFFFFF);
+  color: #2A1313;
+  float: right;
+  padding-left: 5px;
+}
+
+.advert_item_user {
+  width: 250px;
+  border: 2px solid #968282;
+  margin-top: 5px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #8694F8, #FFFFFF);
+}
+
+.advert_item_title {
+  width: 350px;
+  border: 2px solid #968282;
+  margin-top: 5px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #8694F8, #FFFFFF);
+  & a {
+    height: 40px;
+    width: 347px;
+    color: #2A1313;
+    background: linear-gradient(to bottom, #8694F8, #FFFFFF);
+  }
+  & a:hover {
+    color: #2A1313;
+  }
+}
+
+.show_advert {
+  margin: 10px 20px;
+}
+
+.show_advert_title, .show_advert_price, .show_advert_description {
+  border-left: 2px solid red;
+  padding-left: 5px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}

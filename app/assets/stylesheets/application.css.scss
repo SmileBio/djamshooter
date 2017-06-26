@@ -1,0 +1,68 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "merchants/cabinet";
+@import "layout/application";
+@import "devise/registration";
+@import "welcome";
+@import "adverts";
+
+body {
+  background-color: #efefef;
+  height: 100%;
+}
+
+.add_advert_link {
+
+  display: inline-block;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: #2661d6;
+  text-align: center;
+  color: white;
+  height: 50px;
+  width: 150px;
+  padding-top: 10px;
+  margin: 3px 10px;
+  font-size: 16px;
+  &:hover {
+    text-decoration: none;
+    box-shadow: -2px 2px 5px black;
+    color: white;
+    font-size: 15px;
+    padding-top: 10px;
+  }
+}
+
+.nav_panel {
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+  background: linear-gradient(to top right, white, darkblue);
+  border-radius: 3px;
+  width: 100%;
+}
+
+.ul_nav_panel {
+  padding-top: 7px;
+}
+
+.ul_nav_panel li {
+  list-style-type: none;
+  & a:last-child {
+    background-color: darkred;
+  }
+}
+
+

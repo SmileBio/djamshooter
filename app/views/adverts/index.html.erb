@@ -1,12 +1,29 @@
-<%= link_to "add advert", new_advert_path %>
+<div class="advert_index">
+  <div>
+    <footer>
+      <h1>Объявления</h1>
+    </footer>
+  </div>
+  <div class="adverts_block">
+    <% @adverts.each do |advert| %>
+      <div class="advert_block_item">
+        <ul class="adverts_list">
+          <li class="advert_item_price">
+            <%= truncate(advert.price, length: 10) %>
+          </li>
+          <li class="advert_item_title">
+            <%= link_to advert.title, advert_path(advert), class:"btn btn-primary" %>
+          </li>
 
-<% @adverts.each do |advert| %>
-  <ul>
-    <li>
-      <%= link_to advert.title, advert_path(advert) %>
-    </li>
-    <li>
-      <%= advert.user.email %>
-    </li>
-  </ul>
-<% end %>
+          <li class="advert_item_description">
+            <%= truncate(advert.description, length: 400) %>
+          </li>
+          <li class="advert_item_user">
+            <%= advert.user.email %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+

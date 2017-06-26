@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   get "services/:id/new", to: "merchants/services#new"
   post "services/:id", to: "merchants/services#create"
 
-  resources :cabinet, controller: "merchants/cabinet"
+
+  resource :cabinet, controller: "merchants/cabinet"
   #resources :merchants, controller: :merchant_room
   # namespace :merchants do
   #   resources :users do

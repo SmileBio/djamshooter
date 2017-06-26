@@ -6,34 +6,66 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta charset="utf-8">
   </head>
 
   <body>
-    <ul>
-      <% if user_signed_in? %>
-        <li>
-        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-        </li>
-      <% else %>
-        <li>
-        <%= link_to('Login', new_user_session_path)  %>
-        </li>
-        <li>
-        <%= link_to('sign_up', new_user_registration_path)  %>
-        </li>
-      <% end %>
-    </ul>
-    <ul>
-      <li>
-        <%= link_to "home", "/" %>
-        <%= link_to "merchants", merchants_path %>
-        <%= link_to "объявления", adverts_path %>
-        <%= link_to "profile", edit_user_registration_path(current_user) if current_user %>
-      </li>
-    </ul>
+    <p class="notice notice_time" <%= "style=display:none" if !notice %> ><%= notice%></p>
+    <p class="alert" <%= "style=display:none" if !notice %>  ><%= alert %></p>
 
-    <p class="notice notice_time"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% unless user_signed_in? %>
+      <ul class="user_room">
+        <li>
+        <%= link_to('войти', new_user_session_path)  %>
+        </li>
+        <li>
+        <%= link_to('зарегистрироватся', new_user_registration_path)  %>
+        </li>
+      </ul>
+    <% end %>
+
+    <div class="nav_panel">
+      <% if current_user %>
+        <ul class="user_room">
+          <li>
+            <div id="user_panel" onclick="openPanel()">
+              навести сюда
+            </div>
+            <ul class="user_panel" onmouseleave="closePanel()">
+              <li>
+                <%= link_to'выйти', destroy_user_session_path, :method => :delete %>
+              </li>
+              <li>
+                <%= link_to "профайл", edit_user_registration_path(current_user) %>
+              </li>
+              <li <%= "style=display:none" unless can? :manage, :merchant_page %> >
+                <%= link_to "кабинет", new_cabinet_path if can? :manage, :merchant_page %>
+              </li>
+              <li <%= "style=display:none" unless current_user.is?(:admin) %> >
+                <%= link_to "админка", admin_regions_path if current_user.is?(:admin) %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      <% end %>
+      <ul class="ul_nav_panel">
+        <li>
+          <div>
+            <%= link_to "домой", "/", class:"add_advert_link" %>
+            <%= link_to "список компаний", merchants_path, class:"add_advert_link" %>
+            <%= link_to "объявления", adverts_path, class:"add_advert_link" %>
+
+            <%= link_to "добавить обьяву", new_advert_path, class:"add_advert_link" if can? :manage, :advert %>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
     <%= yield %>
+
+    <div class="application_footer">
+      пока так
+    </div>
   </body>
 </html>
