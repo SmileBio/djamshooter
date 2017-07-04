@@ -29,6 +29,10 @@ gem 'cancancan', '~> 1.10'
 gem 'simple_form'
 gem "nested_form"
 
+
+#Provides the generator settings required for Rails 3 and 4 to use Slim
+gem 'slim-rails', '~> 3.0', '>= 3.0.1'
+
 #Easy upload management for ActiveRecord
 gem "paperclip", "~> 5.0.0"
 

@@ -1,0 +1,4 @@
+= link_to "create new category", new_admin_category_path
+ul
+  - @categories.each do |category|
+    = render partial: "subcategory", locals: {category: category}

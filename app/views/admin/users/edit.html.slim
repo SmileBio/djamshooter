@@ -1,0 +1,7 @@
+h2
+  | edit region
+= form_for [:admin, @user] do |r|
+  = r.text_field :email
+  = r.text_field :user_roles
+  = r.submit "submit"
+= link_to "back", :back

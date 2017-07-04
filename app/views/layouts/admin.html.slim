@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title
+      | Djamshooter2
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    ul
+      - if user_signed_in?
+        li
+          = link_to('Logout', destroy_user_session_path, :method => :delete)
+      - else
+        li
+          = link_to('Login', new_user_session_path)
+        li
+          = link_to('sign_up', new_user_registration_path)
+    ul
+      li
+        = link_to "regions", admin_regions_path
+        = link_to "users", admin_users_path
+        = link_to "categories", admin_categories_path
+        = link_to "home", "/"
+    p.notice.notice_time
+      = notice
+    p.alert
+      = alert
+    = yield

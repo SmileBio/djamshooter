@@ -1,0 +1,10 @@
+h2
+  | show region
+div
+  ul
+    li
+      = @region.id
+    li
+      = @region.title
+= link_to "regions", admin_regions_path
+= link_to "#{@region.title} cities", admin_region_cities_path(@region)

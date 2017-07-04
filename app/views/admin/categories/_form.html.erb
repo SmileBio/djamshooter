@@ -1,6 +1,0 @@
-<%= form_for [:admin, @category], html: { multipart: true } do |c| %>
-  <%= c.text_field :title %>
-  <%= c.file_field :icon %>
-  <%= c.collection_select :parent_id, @categories, :id, :title, include_blank: "рутовая"  %>
-  <%= c.submit "save" %>
-<% end %>

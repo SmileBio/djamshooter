@@ -1,0 +1,11 @@
+p
+  = link_to "create region", new_admin_region_path
+- @regions.each do |region|
+  p
+    = region.id
+  p
+    = link_to region.title, admin_region_path(region)
+    | , 
+    = link_to 'edit', edit_admin_region_path(region)
+    | , 
+    = link_to "destroy", admin_region_path(region), method: :delete, data: {confirm: "are you shure?"}

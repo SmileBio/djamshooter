@@ -1,0 +1,10 @@
+ul
+  li
+    = @service.id
+  li
+    = @service.title
+  li
+    = @service.description
+  li
+    = @service.measure
+= link_to "services", admin_category_services_path(@service.category_id)

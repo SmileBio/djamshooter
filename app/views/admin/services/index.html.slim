@@ -1,0 +1,13 @@
+= link_to "new service", new_admin_category_service_path(@category)
+- @services.each do |service|
+  ul
+    li
+      = service.id
+    li
+      = link_to service.title, admin_service_path(service)
+      | , 
+      = link_to "edit", edit_admin_service_path(service)
+    li
+      = service.description
+    li
+      = service.measure

@@ -1,0 +1,73 @@
+ul.nav.nav-tabs
+  li.active
+    a[data-toggle="tab" href="#home"]
+      | О Вас
+  li
+    a[data-toggle="tab" href="#category"]
+      | Категории
+  li
+    a[data-toggle="tab" href="#images"]
+      | Галерея
+  li
+    a[data-toggle="tab" href="#price-list"]
+      | Прайс-лист
+  li
+    a[data-toggle="tab" href="#cities-merchants"]
+      | Где Вы выполняете работы
+= simple_form_for @merchant_page, url: "/cabinet", method:"post" do |page|
+  .tab-content
+    #home.tab-pane.fade.in.active
+      .row
+        .col-lg-4.col-lg-offset-4.col-md-6.col-md-offset-3.col-sm-10.col-sm-offset-1
+          .form-group
+            h4
+              label.label.label-primary[for="company_name"]
+                | название вашей компании
+            = page.text_field :company_name, class:"form-control", placeholder: "введите имя компании"
+          = page.text_field :approved, type:"hidden", value: "true"
+          .form-group
+            h4
+              label.label.label-primary[for="company_logo"]
+                | фото или лого
+            = page.file_field :company_logo
+          .form-group
+            h4
+              label.label.label-primary[for="phone"]
+                | номер телефона
+            = page.text_field :phone, class:"form-control", placeholder: "097-****-***"
+          .form-group
+            h4
+              label.label.label-primary[for="description"]
+                | ваше описание
+            = page.text_area :description, class:"form-control", placeholder: "описание", style: "height:200px"
+    #category.tab-pane.fade
+      h4.mp_categories_header
+        | выберите категории в каких вы работает
+      - @merchant_categories.each do |category|
+        - if category.merchant_pages.include?(@merchant_page)
+          .col-lg-3.col-md-4.col-sm-6.col-xs-10
+            |  <button id=
+            = category.id
+            |  type="button" class="categories_mp btn btn-info" aria-label="Left Align"> 
+            span[aria-hidden="true"]
+              = image_tag(category.icon.url(:original), class: "cabinet_category_icon")
+            = category.title
+            |  <input type="hidden" name="categories[]" value=
+            = category.id
+            | > 
+        - else
+          .col-lg-3.col-md-4.col-sm-6.col-xs-10
+            |  <button id=
+            = category.id
+            |  type="button" class="categories_mp btn btn-default" aria-label="Left Align"> 
+            span[aria-hidden="true"]
+              = image_tag(category.icon.url(:original), class: "cabinet_category_icon")
+            = category.title
+    #images.tab-pane.fade
+
+    #price-list.tab-pane.fade
+      |  формы 
+    #cities-merchants.tab-pane.fade
+      |  города и области в каких вы можете выполнять работы 
+  .form-group
+    = page.submit "сохранить", class: "btn btn-success form-control"

@@ -1,0 +1,8 @@
+h2
+  | show
+ul
+  li
+    = @city.id
+  li
+    = @city.title
+= link_to "cities", admin_region_cities_path(@city.region_id)

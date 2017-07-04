@@ -1,9 +1,0 @@
-<h2><%= @region.title %> cities</h2>
-<%= link_to "add city", new_admin_region_city_path(@region) %>
-<%= link_to "regions", admin_regions_path %>
-<% @cities.each do |city| %>
-  <ul>
-    <li><%= city.id %></li>
-    <li><%= link_to city.title, admin_city_path(city) %>, <%= link_to "edit", edit_admin_city_path(city) %>, <%= link_to "destroy", admin_city_path(city), method: :delete, data: {confirm: "are you shure?"} %></li>
-  </ul>
-<% end %>

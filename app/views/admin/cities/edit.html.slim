@@ -1,0 +1,6 @@
+h2
+  | update 
+  = @city.title
+= form_for [:admin, @city] do |c|
+  = c.text_field :title
+  = c.submit "add"

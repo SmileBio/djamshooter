@@ -1,0 +1,9 @@
+h2
+  | show category
+ul
+  li
+    = @category.id
+  li
+    = @category.title
+= link_to "category list", admin_categories_path
+= link_to "services", admin_category_services_path(@category)
