@@ -1,17 +1,45 @@
 <% if @merchants_pages.nil? %>
-  <p>sorry nothing to show</p>
+  <p>результатом выборки = нихуяшечки</p>
 <% else %>
-  <% @merchants_pages.each do |page| %>
-    <ul>
-      <li>
-        <%= page.id %>
-      </li>
-      <li>
-        <%= link_to page.company_name, merchant_path(page) %>
-      </li>
-      <li>
-        <%= page.description %>
-      </li>
-    </ul>
-  <% end %>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <% @merchants_pages.each do |page| %>
+        <div class="index_company_block">
+          <div class="index_company_name">
+            <%= link_to page.company_name, merchant_path(page) %>
+          </div>
+          <!-- добавить миграцию на компани лого\фото -->
+          <div class="row">
+            <div class="index_company_image col-lg-1">
+              <% if page.company_logo.exists? %>
+                <%= image_tag(page.company_logo.url(:original), class:"index_company_logo") %>
+              <% else %>
+                <img src="aaa.jpg" alt="" height="80px" width="60px">
+              <% end %>
+              <!-- <img src="aaa.jpg" alt="" height="80px" width="60px"> -->
+            </div>
+            <div class="index_company_description col-lg-11">
+              <%= page.description %>
+            </div>
+          </div>
+
+          <div class="index_company_categories_list">
+            <p>категории в каких работает компания</p>
+
+            <% page.categories.each do |category| %>
+              <div class="index_company_categories">
+
+                <button type="button" class="btn btn-default">
+                  <%= image_tag(category.icon.url(:original), class:"index_company_category_icon") %>
+                  <%= category.title %>
+                </button>
+
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
 <% end %>

@@ -3,20 +3,95 @@
     <p> <%= error %> </p>
   <% end %>
 </div>
-<div class="advert_form">
-  <%= form_for @advert do |a| %>
-    <div>
-      <%= a.text_field :title, class: "form_advert_title", placeholder: "тема обьявления", autofocus: true, required: true %>
-    </div>
-    <div>
-      <%= a.text_field :price, class: "form_advert_price", placeholder: "цена"%>
-    </div>
-    <div>
-      <%= a.text_area :description, class: "form_advert_description", placeholder: "описание", required: true %>
-    </div>
-    <div>
-      <%= a.submit "сохранить", class: "form_advert_submit"%>
-    </div>
-  <% end %>
-</div>
 
+
+<%= form_for @advert do |a| %>
+  <div class="row advert_form">
+    <div class="col-lg-offset-4 col-lg-4">
+      <div class="form-group">
+        <h4><label class="label label-primary" for="title">титулка</label></h4>
+        <%= a.text_field :title, class: "form-control", placeholder: "тема обьявления", autofocus: true, required: true, id:"title" %>
+      </div>
+      <div class="form-group">
+        <h4><label class="label label-primary" for="price">цена</label></h4>
+        <%= a.text_field :price, class: "form-control", placeholder: "цена", id:"price"%>
+      </div>
+      <div class="form-group">
+        <h4><label class="label label-primary" for="description">описание</label></h4>
+        <%= a.text_area :description, class: "form-control", placeholder: "описание", required: true, id:"description", rows:"5" %>
+        <br>
+      </div>
+      <div class="form-group">
+        <h4><label class="label label-primary" for="description">город</label></h4>
+        <input type="text" class="form-control" id="searchtest" placeholder="введите название города" value=<%= @advert_location %>>
+        <span id="invalid_city_name" style="display:none">некоректное имя населенного пункта</span>
+        <input type="hidden" id="region_id" name="advert[region_id]" value=<%= @region_id || 0 %> required>
+        <input type="hidden" id="city_id" name="advert[city_id]" value=<%= @city_id || 0%> required>
+
+        <ul class="cities_list" id="search_list_result" style="display:none">
+
+        </ul>
+      </div>
+      <div class="form-group">
+        <%= a.submit "сохранить", class: "btn btn-success form-control"%>
+      </div>
+  </div>
+<% end %>
+
+
+<script>
+  $(document).ready(function(){
+    $("#searchtest").on("change textInput input", getResult)
+    $("#new_advert").on("submit", validateAdvertForm)
+    $(document).on("click", hideCities)
+  })
+
+  function hideCities(){
+    $("#search_list_result").hide()
+  }
+
+  function validateAdvertForm(){
+    $("#region_id").val().length < 1 ? $("#searchtest").css("border", "2px solid red") : false
+    $("#title").val().length < 1 ? $("#searchtest").css("border", "2px solid red") : false
+    $("#description").val().length < 1 ? $("#searchtest").css("border", "2px solid red") : false
+  }
+
+  function addCityToInput(value, region_id, city_id){
+    $("#searchtest").val(value)
+    $("#region_id").val(region_id)
+    $("#city_id").val(city_id)
+    $("#search_list_result li").remove()
+    $("#search_list_result").hide()
+  }
+
+  function getResult(event){
+    $("#search_list_result li").remove()
+    $("#region_id").val("")
+    $("#city_id").val("")
+    $("#invalid_city_name").hide()
+    if (event.target.value.length > 2) {
+      $.get({
+        url: "http://localhost:3000/city_region_search",
+        data: {city:event.target.value},
+        success: function(data){
+          if (data.length >= 1){
+            $("#search_list_result").show()
+            let new_data = data.map(item=>{
+              let region_name = `${item.region.title}, ${item.title}`
+              return `<li onclick="addCityToInput('${region_name}', '${item.region.id}', '${item.id}')">${region_name}</li>`
+            })
+            new_data.forEach(item=>{
+              $("#search_list_result").append(item)
+            })
+          }else {
+            $("#invalid_city_name").show()
+          }
+
+        }
+      })
+    }
+
+
+    //console.log(event.target.value)
+  }
+</script>

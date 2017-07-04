@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 myFunc = (a,b) -> console.log(a+b)
 $(document).ready(
-    myFunc(1,2)
+    myFunc(1,10)
   )
 

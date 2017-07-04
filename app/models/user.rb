@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :merchant_page
   belongs_to :city
+  belongs_to :region
   has_many :adverts
   has_and_belongs_to_many :cities
 
@@ -16,5 +17,11 @@ class User < ApplicationRecord
 
   def is?(role)
     roles.include?(role.to_s)
+  end
+
+  after_create do
+    if self.is?(:merchant)
+      page = MerchantPage.create(user_id: self.id, company_name: "ваше название", approved: false)
+    end
   end
 end

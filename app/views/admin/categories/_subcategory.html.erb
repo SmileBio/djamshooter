@@ -1,5 +1,6 @@
 
 <li>
+  <%= link_to image_tag(category.icon.url(:original)), category.icon.url %>
   <%= link_to category.title, admin_category_path(category)%>,
   <%= link_to "edit", edit_admin_category_path(category) %>,
   <%= link_to "destroy", admin_category_path(category),

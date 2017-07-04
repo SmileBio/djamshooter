@@ -1,7 +1,7 @@
 // Place all the styles related to the merchants/cabinet controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.merchant_page_new {
+/* .merchant_page_new {
   padding: 5px 5px;
   height: 100%;
   width: 100%;
@@ -151,3 +151,68 @@
 }
 
 
+ */
+.categories_mp {
+  width: 300px;
+  text-align: center;
+}
+
+.cabinet_category_icon {
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+.mp_categories_header {
+  text-align: center;
+}
+.galery_input {
+  margin-top: 10px;
+  width: 200px;
+}
+.submit_cabinet_categories {
+  margin-top: 20px;
+}
+
+/* galery route */
+.galery_delete {
+  display: inline-block;
+}
+
+.galery_block {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+  height: 380px;
+}
+
+.file_upload{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 1em;              /* example */
+    height: 2em;                 /* example */
+    line-height: 2em;             /* the same as height */
+}
+.file_upload .button, .file_upload > mark{
+    display: block;
+    cursor: pointer;              /* example */
+}
+.file_upload .button{
+    padding-left: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 8em;                  /* example */
+    height: 100%;
+    text-align: center;           /* example */
+}
+.file_upload > mark{
+    background: transparent;     /* example */
+    padding-left: 1em;            /* example */
+}
+
+.file_upload input[type=file]{
+    position: absolute;
+    top: 0;
+    opacity: 0
+}

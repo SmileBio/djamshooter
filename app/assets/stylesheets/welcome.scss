@@ -10,30 +10,6 @@
   }
 
 }
-.search_form .welcome_search_input {
-  color: blue;
-  height: 50px;
-  width: 300px;
-  border-radius: 5px;
-  font-size: 20px;
-  border-color: darkred;
-}
-.search_form {
-  text-align: center;
-}
-.welcome_search_submit {
-  height: 50px;
-  width: 90px;
-  background: linear-gradient(to top, #057F45, #535353);
-  border-radius: 5px;
-  font-size: 20px;
-  color: white;
-  border-color: darkred;
-  &:hover {
-    font-size: 22px;
-  }
-}
-
 .welcome_search_result {
   text-align: center;
   & ul {

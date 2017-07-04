@@ -18,51 +18,17 @@
 @import "devise/registration";
 @import "welcome";
 @import "adverts";
+@import "merchants_pages";
 
-body {
-  background-color: #efefef;
-  height: 100%;
+
+
+html, body {
+  min-height:100%;
+  position:relative;
 }
 
-.add_advert_link {
 
-  display: inline-block;
-  border: 1px solid white;
-  border-radius: 5px;
-  background-color: #2661d6;
-  text-align: center;
-  color: white;
-  height: 50px;
-  width: 150px;
-  padding-top: 10px;
-  margin: 3px 10px;
-  font-size: 16px;
-  &:hover {
-    text-decoration: none;
-    box-shadow: -2px 2px 5px black;
-    color: white;
-    font-size: 15px;
-    padding-top: 10px;
-  }
-}
 
-.nav_panel {
-  border-bottom: 2px solid black;
-  border-top: 2px solid black;
-  background: linear-gradient(to top right, white, darkblue);
-  border-radius: 3px;
-  width: 100%;
-}
 
-.ul_nav_panel {
-  padding-top: 7px;
-}
-
-.ul_nav_panel li {
-  list-style-type: none;
-  & a:last-child {
-    background-color: darkred;
-  }
-}
 
 

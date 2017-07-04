@@ -1,0 +1,30 @@
+<h4 class="mp_categories_header">выберите категории в каких вы работает</h4>
+<%= simple_form_for @merchant_page, url: "/cabinet_categories", method:"post" do |page| %>
+  <% @merchant_categories.each do |category| %>
+    <% if category.merchant_pages.include?(@merchant_page) %>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-10">
+        <button id=<%= category.id %> type="button" class="categories_mp btn btn-info" aria-label="Left Align">
+          <span aria-hidden="true">
+            <%= image_tag(category.icon.url(:original), class: "cabinet_category_icon") %>
+          </span>
+          <%= category.title %>
+        </button>
+        <input type="hidden" name="merchant_page[category_ids][]" value=<%= category.id %>>
+      </div>
+    <% else %>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-10">
+        <button id=<%= category.id %> type="button" class="categories_mp btn btn-default" aria-label="Left Align">
+          <span aria-hidden="true">
+            <%= image_tag(category.icon.url(:original), class: "cabinet_category_icon") %>
+
+          </span>
+          <%= category.title %>
+        </button>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="form-group">
+    <%= page.submit "сохранить", class: "btn btn-success form-control submit_cabinet_categories"%>
+  </div>
+<% end %>

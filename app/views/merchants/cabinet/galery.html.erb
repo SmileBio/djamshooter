@@ -1,0 +1,69 @@
+<% if @merchant_page.errors %>
+  <% @merchant_page.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+<div style="text-align:center">
+  <h4>здесь Вы можете добавлять галереи и прикреплять к ним фото ваших работ</h4>
+  <h5>максимум 6 галерей и по 8 фотографий в каждой</h5>
+</div>
+<%= nested_form_for @merchant_page, url: "/cabinet_galery", method:"post" do |page| %>
+  <!-- создать галерею -->
+  <div class="row" style="margin-left: 0" id="">
+    <%= page.fields_for :galeries do |galery| %>
+      <div class="galery_block col-lg-4">
+        <div class="row">
+          <div class="galery_title form-group col-lg-8 col-lg-offset-1">
+            <%= galery.text_field :title, placeholder: "введите название галереи", class:"form-control"%>
+          </div>
+          <div class="galery_delete col-lg-1">
+            <%= galery.link_to_remove "", class:"glyphicon glyphicon-remove btn btn-danger" %>
+          </div>
+        </div>
+
+
+        <div class="row merchant_galery_images">
+          <!-- создать имейджы в галереи -->
+          <%= galery.fields_for :images do |image| %>
+
+            <div class="col-lg-3" style="text-align:center">
+              <div >
+                <% if image.object.image.exists? %>
+                  <%= image_tag image.object.image.url(:thumb) %>
+                <% else %>
+                  <img src="plus.png" alt="" height="64px" width="64px">
+                <% end %>
+              </div>
+
+              <label class="file_upload">
+                  <span class="button">Выбрать</span>
+                  <mark>Файл не выбран</mark>
+                  <%= image.file_field :image %>
+              </label>
+
+
+              <%= image.link_to_remove "", class:"glyphicon glyphicon-arrow-up btn btn-danger", data: { confirm: "точно удалить эту картинку?"} %>
+            </div>
+
+          <% end %>
+          <div class="add_image_to_galery">
+            <%= galery.link_to_add "+ image", :images, class:"btn btn-info"  %>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    <% end %>
+    <%= page.link_to_add "+ галерею", :galeries, class:"btn btn-default", id:"add_galery"  %>
+  </div>
+
+
+
+  <div class="form-group">
+    <%= page.submit "сохранить", class:"form-control btn btn-success" %>
+  </div>
+
+
+<% end %>

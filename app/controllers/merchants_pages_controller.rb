@@ -2,7 +2,7 @@ class MerchantsPagesController < ApplicationController
 
 
   def index
-    @merchants_pages = MerchantPage.all
+    @merchants_pages = MerchantPage.where(approved:true).order(id: "ASC").includes(:categories)
   end
 
   def show

@@ -29,6 +29,12 @@ gem 'cancancan', '~> 1.10'
 gem 'simple_form'
 gem "nested_form"
 
+#Easy upload management for ActiveRecord
+gem "paperclip", "~> 5.0.0"
+
+#Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable and sophisticated paginator for Rails 3+
+gem 'kaminari', '~> 0.16.3'
+
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use jquery as the JavaScript library

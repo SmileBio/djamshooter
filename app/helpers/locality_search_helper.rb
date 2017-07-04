@@ -1,0 +1,2 @@
+module LocalitySearchHelper
+end
