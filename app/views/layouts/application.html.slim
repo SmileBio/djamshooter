@@ -39,30 +39,32 @@ html
                 - if current_user
                   li
                     = link_to "профайл", edit_user_registration_path(current_user)
-                  |  <li 
+                  |  <li
                   = "style=display:none" unless can? :manage, :merchant_page
-                  |  > 
+                  |  >
                   = link_to "кабинет", "/cabinet_main" if can? :manage, :merchant_page
-            |  <li 
-            = "style=display:none" unless current_user.is?(:admin)
-            |  > 
-            = link_to "админка", admin_regions_path if current_user.is?(:admin)
-            li.divider[role="separator"]
-            li
-              = link_to'выйти', destroy_user_session_path, :method => :delete
-            - else
-              li
-                = link_to('войти', new_user_session_path)
-              li
-                = link_to('зарегистрироватся', new_user_registration_path)
+                  li
+                    = "style=display:none" unless current_user.is?(:admin)
+                  li
+                    = link_to "админка", admin_regions_path if current_user.is?(:admin)
+                  li.divider[role="separator"]
+                  li
+                    = link_to'выйти', destroy_user_session_path, :method => :delete
+                - else
+                  li
+                    = link_to('войти', new_user_session_path)
+                  li
+                    = link_to('зарегистрироватся', new_user_registration_path)
+
     .row
       .col-lg-4.col-offset-4.col-md-4.col-md-offset-4.col-sm-6.col-sm-offse-3
-        |  <p class="notice notice_time" 
+        |  <p class="notice notice_time"
         = "style=display:none" if !notice
         |  >
         = notice
-        |  <p class="alert" 
+        |  <p class="alert"
         = "style=display:none" if !notice
         |  >
         = alert
+
     = yield
